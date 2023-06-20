@@ -11,11 +11,46 @@ Task: Create a basic app in Laravel that will be using the store data of an exce
 ## Installation
 
 1. Clone (download) the repository:
-```sh
-git clone git@github.com:shahsawoodshinwari/larvel-task.git
-```
-```sh
+   clone via ssh
+    
+   ```sh
+   git clone git@github.com:shahsawoodshinwari/larvel-task.git
+   ```
+    
+   clone via https
+   ```sh
+   git clone https://github.com/shahsawoodshinwari/larvel-task.git
+   ```
 
-```
+   direct zip download
+   [Download Project as ZIP](https://github.com/shahsawoodshinwari/larvel-task/archive/refs/heads/main.zip)
+
+2. Navigate to the project directory:
+   ```sh
+   cd laravel-task
+   ```
+3. Install the dependencies using Composer:
+   ```sh
+   composer install
+   ```
+4. Set up the database by configuring the .env file with your database credentials:
+   ```sh
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
+5. Run the database migrations:
+   ```sh
+   php artisan migrate
+   ```
+6. Start the Laravel development server:
+   ```sh
+   ./start.sh
+   ```
+7. Access the application in your web browser at http://localhost:8000.
+
 ## ERD
-Click [here](https://dbdocs.io/shahsawoodshinwari/Laravel-Task) to view the ERD (entity-relationship-diagram) of the project
+Click <a href="https://dbdocs.io/shahsawoodshinwari/Laravel-Task" target="_blank">here</a> to view the ERD (entity-relationship-diagram) of the project
