@@ -1,0 +1,42 @@
+project "Laravel Task" {
+database_type: "MYSQL"
+note:
+'''
+# Laravel Task
+Task: Create a basic app in Laravel that will be using the store data of an excel file of any data structure.
+
+1. Create a database ERD that will support the application data
+2. Create an upload file page that will contain an input field where the user can upload the excel file.
+3. Once the form is submitted all the data should be stored in the MYSQL Database.
+4. Create the main page where all the uploaded files will be shown, each one of them should have a view page.
+5. If the user views the uploaded file, the view page should show the contents of the excel files in the same format they were uploaded.
+'''
+}
+table products {
+  id bigint [pk, increment]
+  created_at timestamp [default: NULL]
+  updated_at timestamp [default: NULL]
+  deleted_at timestamp [default: NULL]
+  note: '''
+    Stores the info of the products
+  '''
+}
+
+table attributes {
+  id bigint [pk, increment]
+  name varchar(255) [not null]
+  note: '''
+    Stores the info the attributes
+  '''
+}
+
+table attributes_product {
+  id bigint [pk, increment]
+  product_id bigint [ref: <> products.id]
+  attribute_id bigint [ref: <> attributes.id]
+  value text [not null]
+  indexes {
+    (product_id, attribute_id) [unique]
+  }
+  note: "Stores the many-to-many relationship b/w products and attributes"
+}
