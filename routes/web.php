@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UploadExcelController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::redirect('/', '/upload-excel')->name('home');
+Route::resource('products', ProductController::class)->only('index','create', 'store');
 Route::resource('upload-excel', UploadExcelController::class)->except('edit', 'update', 'destroy');

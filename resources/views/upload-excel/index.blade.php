@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>Uploaded Excel Files</div>
                     <div>
-                        <a href="{{ route('upload-excel.create') }}" class="btn btn-sm btn-primary">Upload New</a>
+                        <a href="{{ route('upload-excel.create') }}" class="btn btn-sm btn-primary">Upload New File</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -39,7 +39,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                    {{ $uploadedFiles->links() }}
+                    {{ $uploadedFiles->links('vendor.pagination.bootstrap-5') }}
                 </div>
             </div>
         </div>

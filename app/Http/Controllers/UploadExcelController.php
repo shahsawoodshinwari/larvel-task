@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\ExcelImport;
 use App\Models\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Excel;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class UploadExcelController extends Controller
      */
     public function index()
     {
-        $uploadedFiles = UploadedFile::paginate();
+        $uploadedFiles = UploadedFile::latest()->paginate();
         return view('upload-excel.index', compact('uploadedFiles'));
     }
 
@@ -32,7 +33,7 @@ class UploadExcelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => ['required', 'mimes:xlsx']
+            'file' => ['required', 'mimes:xlsx', 'max:20480'],
         ], [
             'file.required' => 'Please select a file to upload.',
         ]);
@@ -45,11 +46,11 @@ class UploadExcelController extends Controller
             'original_name' => $originalName,
         ]);
 
-        
+        $filePath = $request->file('file')->store('temp');
         if ($uploadedFile) {
-            $fullPath = 'public/storage/' . $uploadedFile->name;
-            \Excel::import(new \App\Imports\ExcelImport, $fullPath);
-            return redirect()->route('upload-excel.index');
+            Excel::import(new ExcelImport, $filePath);
+            Storage::delete($filePath);
+            return redirect()->route('products.index');
         }
 
         return back();
