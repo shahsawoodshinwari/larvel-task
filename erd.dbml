@@ -30,11 +30,11 @@ table attributes {
   '''
 }
 
-table attributes_product {
+table attribute_product {
   id bigint [pk, increment]
   product_id bigint [ref: <> products.id]
   attribute_id bigint [ref: <> attributes.id]
-  value text [not null]
+  value varchar(255)
   indexes {
     (product_id, attribute_id) [unique]
   }
